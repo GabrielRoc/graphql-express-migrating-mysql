@@ -2,6 +2,11 @@ import { gql } from 'apollo-server-express'
 import * as db from '../database'
 
 export const typeDefs = gql`
+
+    extend type Mutation {
+        createTicket(subject: String!, priority_id: Int!, status_id: Int!, user_id: Int!, assigned_to_user_id: Int!): Ticket
+    }
+
     extend type Query {
         tickets: [Ticket]
         ticket(id: ID!): Ticket
@@ -37,4 +42,17 @@ export const resolvers = {
         assigned_to_user: async (obj, args, context, info) =>
             db.users.findByPk(obj.assigned_to_user_id),
     },
+    createTicket({ name, repo, age }) {
+        const ticket = {
+          id: id++,
+          subject,
+          priority_id,
+          status_id,
+          user_id,
+          assigned_to_user_id
+        };
+    
+        db.users.push(ticket);
+    
+        return ticket;
 }
