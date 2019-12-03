@@ -2,9 +2,9 @@ const Sequelize = require('sequelize')
 
 var db = {}
 
-const sequelize = new Sequelize('graphql-mysql-tutorial', 'graphql', '123456', {
+const sequelize = new Sequelize('graphql', 'root', '', {
     host: 'localhost',
-    port: '8006',
+    port: '3306',
     dialect: 'mysql',
     define: {
         freezeTableName: true,
